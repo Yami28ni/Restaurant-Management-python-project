@@ -22,3 +22,18 @@ def add_category_info(showCategory):
 def show_all_category():
     cursor.execute("SELECT * FROM `category`")
     return cursor.fetchall()
+
+def delete_category_info(category_id):
+    print("Database: category id ", category_id)
+    cursor.execute("DELETE FROM `category` WHERE `id`=%s",category_id)
+    con.commit()
+    return True
+    
+def update_category(updated_category_details):
+    print("Database: updated category details ",updated_category_details)
+    try:
+        cursor.execute("UPDATE `category` SET `category_name`=%s WHERE `id`=%s",updated_category_details)
+        con.commit()
+        return True
+    except:
+        return False
