@@ -37,3 +37,11 @@ def update_category(updated_category_details):
         return True
     except:
         return False
+
+def add_menu_info(menu_items):
+    try:
+        cursor.execute("INSERT INTO menu (food_name,code,category,price,size) VALUES(%s,%s,%s,%s,%s)",menu_items)
+        con.commit()
+        return True
+    except:
+        return False

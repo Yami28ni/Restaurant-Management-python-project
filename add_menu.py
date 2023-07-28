@@ -1,5 +1,7 @@
 from tkinter import *
-# from tkinter import messagebox
+from tkinter.ttk import Combobox
+from tkinter import messagebox
+import database
 
 class AddMenu:
     def __init__(self):
@@ -22,25 +24,35 @@ class AddMenu:
         self.food_code.place(x=450,y=190)
         self.food_code_entry=Entry(self.f,font=("Century Gothic",12))
         self.food_code_entry.place(x=450,y=220,height=25,width=200)
-         #category
+        #category
         self.food_name=Label(self.f,text="Category:",font=("Google Sans",15),bg="Lightgrey",fg="DeepSkyBlue4")
         self.food_name.place(x=100,y=280)
-        self.food_name_entry=Entry(self.f,font=("Century Gothic",12))
-        self.food_name_entry.place(x=100,y=310,height=25,width=200)
-         #price
-        self.food_name=Label(self.f,text="Price:",font=("Google Sans",15),bg="Lightgrey",fg="DeepSkyBlue4")
-        self.food_name.place(x=450,y=280)
-        self.food_name_entry=Entry(self.f,font=("Century Gothic",12))
-        self.food_name_entry.place(x=450,y=310,height=25,width=200)
-         #size
-        self.food_name=Label(self.f,text="Food Size:",font=("Google Sans",15),bg="Lightgrey",fg="DeepSkyBlue4")
-        self.food_name.place(x=100,y=370)
-        self.food_name_entry=Entry(self.f,font=("Century Gothic",12))
-        self.food_name_entry.place(x=100,y=400,height=25,width=200)
-         #add
-        self.b=Button(self.f, text="Submit",bg='DeepSkyBlue4',font=("Google Sans",12))
-        self.b.place(x=290,y=480,width=150)
 
+        self.type_list=["Veg","NonVeg"]
+        self.type_combobox=Combobox(self.f,values=self.type_list,font=("Google Sans",12),state="readonly")
+        self.type_combobox.place(x=100,y=310,height=25,width=200)        
+         #price
+        self.food_price=Label(self.f,text="Price:",font=("Google Sans",15),bg="Lightgrey",fg="DeepSkyBlue4")
+        self.food_price.place(x=450,y=280)
+        self.food_price_entry=Entry(self.f,font=("Century Gothic",12))
+        self.food_price_entry.place(x=450,y=310,height=25,width=200)
+         #size
+        self.food_size=Label(self.f,text="Food Size:",font=("Google Sans",15),bg="Lightgrey",fg="DeepSkyBlue4")
+        self.food_size.place(x=100,y=370)
+        self.type_list = ["Small","Medium","Large"]
+        self.type_combobox1=Combobox(self.f,values=self.type_list,font=("Google Sans",12),state="readonly")
+        self.type_combobox1.place(x=100,y=400,height=25,width=200)
+        #add
+        self.b=Button(self.f, text="Submit",bg='DeepSkyBlue4',font=("Google Sans",12),command=self.run_add_menu_query)
+        self.b.place(x=290,y=480,width=150)
+    def run_add_menu_query(self):
+        menu_items=(self.food_name_entry.get(),self.food_code_entry.get(),self.type_combobox.get(),self.food_price_entry.get(),self.type_combobox1.get())
+        print("All menu items are:",menu_items)
+        result=database.add_menu_info(menu_items)
+        if result:
+            messagebox.showinfo("Message"," Menu is  added successfully")
+        else:
+            messagebox.showinfo("Message","Alert!,Something went wrong")
         
 k=AddMenu()
 k.add_menu_widgets()
@@ -49,20 +61,6 @@ k.root.mainloop()
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-i=Add_menu()
-i.Add_menu_widgets()
-i.root.mainloop()
 
 
 
