@@ -16,10 +16,10 @@ class AddCategory:
         self.root.title("Add Category | Restaurent Management")
 
     def add_category_widgets(self):
-        self.f=Frame(self.root,bg="Lightpink")
+        self.f=Frame(self.root,bg="MistyRose2")
         self.f.place(x=0,y=0,width=600,height=600)
         
-        self.category=Label(self.f,text="Category Name",bg="Lightpink",font=("Google Sans",17,"bold"))
+        self.category=Label(self.f,text="Category Name",bg="MistyRose2",font=("Google Sans",17,"bold"))
         self.category.place(x=200,y=150)
         
         self.category_name_entry=Entry(self.f,font=("Century Gothic",12))
@@ -30,10 +30,10 @@ class AddCategory:
             result = dict(self.selectedCategoryData).get("values")
             self.category_name_entry.insert(0,result[0])
             
-            self.b = Button(self.f, text='UPDATE',bg='Lightpink',fg='Black', font=("Century Gothic bold",12), command=self.run_update_category_query)
+            self.b = Button(self.f, text='UPDATE',bg='MistyRose2',fg='Black', font=("Century Gothic bold",12), command=self.run_update_category_query)
             self.b.place(x=250, y=250,width=100)
         else:
-            self.b = Button(self.f, text='SUBMIT',bg='Lightpink',fg='Black', font=("Century Gothic bold",12), command=self.run_add_category_query)
+            self.b = Button(self.f, text='SUBMIT',bg='MistyRose2',fg='Black', font=("Century Gothic bold",12), command=self.run_add_category_query)
             self.b.place(x=250, y=250,width=100)
     
     def run_add_category_query(self):
