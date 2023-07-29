@@ -15,7 +15,7 @@ class viewCategory:
         self.tree_view.heading("#0",text="Id")
         self.tree_view.column("#0",width=140)
 
-        self.tree_view.heading("#1",text="Category Name")
+        self.tree_view.heading("#1",text="category")
         self.tree_view.column("#1",width=140)
 
         self.tree_view.heading("#2",text="Delete")

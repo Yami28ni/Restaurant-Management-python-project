@@ -45,3 +45,22 @@ def add_menu_info(menu_items):
         return True
     except:
         return False
+
+def show_all_menu():
+    cursor.execute("SELECT * FROM `menu`")
+    return cursor.fetchall()
+
+def delete_menu_info(menu_id):
+    print("Database: menu id ", menu_id)
+    cursor.execute("DELETE FROM `menu` WHERE `id`=%s",menu_id)
+    con.commit()
+    return True
+    
+def update_menu(updated_menu_details):
+    print("Database: updated menu details ",updated_menu_details)
+    try:
+        cursor.execute("UPDATE `menu` SET `food_name`=%s, `code`=%s, `category`=%s, `price`=%s, `size`=%s WHERE `id`=%s",updated_menu_details)
+        con.commit()
+        return True
+    except:
+        return False
