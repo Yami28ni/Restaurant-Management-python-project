@@ -50,6 +50,11 @@ def show_all_menu():
     cursor.execute("SELECT * FROM `menu`")
     return cursor.fetchall()
 
+def get_menu_price(menu_code):
+    print("Database: menu code - ", menu_code)
+    cursor.execute("SELECT `price` FROM `menu` WHERE `code`=%s",menu_code)
+    return cursor.fetchone()
+
 def delete_menu_info(menu_id):
     print("Database: menu id ", menu_id)
     cursor.execute("DELETE FROM `menu` WHERE `id`=%s",menu_id)
@@ -64,3 +69,64 @@ def update_menu(updated_menu_details):
         return True
     except:
         return False
+
+def add_members_info(members_items):
+    try:
+        cursor.execute("INSERT INTO members (Name,Phone_no,Designation,Address,username,password) VALUES(%s,%s,%s,%s,%s,%s)",members_items)
+        con.commit()
+        return True
+    except:
+        return False
+
+def show_all_members():
+    cursor.execute("SELECT * FROM `members`")
+    return cursor.fetchall()
+
+def delete_members_info(members_id):
+    print("Database: members id ", members_id)
+    cursor.execute("DELETE FROM `members` WHERE `id`=%s",members_id)
+    con.commit()
+    return True
+    
+def update_members(updated_members_details):
+    print("Database: updated members details ",updated_members_details)
+    try:
+        cursor.execute("UPDATE `members` SET `Name`=%s, `Phone_no`=%s, `Designation`=%s, `Address`=%s WHERE `id`=%s",updated_members_details)
+        con.commit()
+        return True
+    except:
+        return False
+
+def members_login(members_details):
+    cursor.execute("select * from members where username=%s and password=%s",members_details)
+    return cursor.fetchone()
+
+
+def add_order_info(showOrder):
+    try:
+        cursor.execute("INSERT INTO orders (table_no,food_code,quantity,total_bill,status) VALUES(%s,%s,%s,%s,%s)",showOrder)
+        con.commit()
+        return True
+    except mysql.connector.Error as error:
+        print("Error - ",error)
+        return False
+
+def show_all_order():
+    cursor.execute("SELECT * FROM `orders`")
+    return cursor.fetchall()
+
+def delete_order_info(order_id):
+    print("Database: order id ", order_id)
+    cursor.execute("DELETE FROM `orders` WHERE `id`=%s",order_id)
+    con.commit()
+    return True
+    
+def update_order(updated_order_details):
+    print("Database: updated order details ",updated_order_details)
+    try:
+        cursor.execute("UPDATE `orders` SET `table_no`=%s,`food_code`=%s,`quantity`=%s,`total_bill`=%s WHERE `id`=%s",updated_order_details)
+        con.commit()
+        return True
+    except:
+        return False
+

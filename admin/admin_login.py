@@ -29,6 +29,8 @@ class admin_login:
             messagebox.showinfo("Message","Login successfull")
         else:
             messagebox.showinfo("Message","Incorrect username or password")
-j=admin_login()
-j.admin_login_widgets()
-j.root.mainloop()
+
+if __name__=="__main__":
+    j=admin_login()
+    j.admin_login_widgets()
+    j.root.mainloop()
